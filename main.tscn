@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cksq2jrp7e6v1" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://beojo0i7l8mwm" path="res://tentacle.blend" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://cp1aqmlcxxdbq" path="res://free_look_camera.gd" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://dt8r8ham76j22" path="res://3DLABbg_UV_Map_Checker_04_512x512.jpg" id="4_1bvp3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
 
@@ -54,6 +55,10 @@ _data = {
 &"RESET": SubResource("Animation_1bvp3"),
 &"fight": SubResource("Animation_lquwl")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+albedo_texture = ExtResource("4_1bvp3")
+uv1_scale = Vector3(15, 1, 1)
 
 [node name="Main" type="Node3D" unique_id=1728616170]
 script = ExtResource("1_h2yge")
@@ -148,12 +153,18 @@ visible = false
 bones/2/scale = Vector3(1, 2, 1)
 bones/3/rotation = Quaternion(0.382682, 0.001002, -0.002419, 0.923876)
 
+[node name="Cube" parent="tentacle_stretch/Armature/Skeleton3D" index="0" unique_id=720510886]
+surface_material_override/0 = SubResource("StandardMaterial3D_h2yge")
+
 [node name="tentacle_position" parent="." unique_id=1915633023 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2, 0, 0)
 
 [node name="Skeleton3D" parent="tentacle_position/Armature" parent_id_path=PackedInt32Array(1915633023, 1838353586) index="0" unique_id=1641236225]
 bones/2/position = Vector3(0, 0.957, 0)
 bones/3/rotation = Quaternion(0.382682, 0.001002, -0.002419, 0.923876)
+
+[node name="Cube" parent="tentacle_position/Armature/Skeleton3D" index="0" unique_id=720510886]
+surface_material_override/0 = SubResource("StandardMaterial3D_h2yge")
 
 [editable path="tentacle"]
 [editable path="tentacle_stretch"]
