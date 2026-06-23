@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bekqmb8ari048"]
 
+[ext_resource type="Script" uid="uid://cksq2jrp7e6v1" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://beojo0i7l8mwm" path="res://tentacle.blend" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://cp1aqmlcxxdbq" path="res://free_look_camera.gd" id="2_0xm2m"]
 
@@ -16,7 +17,46 @@ sky = SubResource("Sky_h2yge")
 transparency = 1
 albedo_color = Color(1, 1, 0.20784314, 0.23921569)
 
+[sub_resource type="Animation" id="Animation_1bvp3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D/SpringBoneSimulator3D/SpringBoneCollisionCapsule3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.9257233, -0.59270966, -0.071885586)]
+}
+
+[sub_resource type="Animation" id="Animation_lquwl"]
+resource_name = "fight"
+length = 1.0333333
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D/SpringBoneSimulator3D/SpringBoneCollisionCapsule3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.56, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(2.9257233, -0.59270966, -0.071885586), Vector3(2.9257233, 0.21776092, -0.071885586), Vector3(2.9257233, -0.59270966, -0.071885586)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7mycd"]
+_data = {
+&"RESET": SubResource("Animation_1bvp3"),
+&"fight": SubResource("Animation_lquwl")
+}
+
 [node name="Main" type="Node3D" unique_id=1728616170]
+script = ExtResource("1_h2yge")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2145615296]
 environment = SubResource("Environment_1bvp3")
@@ -38,51 +78,83 @@ settings/0/end_bone_name = "Bone.006"
 settings/0/end_bone = 5
 settings/0/extend_end_bone = false
 settings/0/center_from = 0
-settings/0/individual_config = true
-settings/0/joint_count = 6
-settings/0/joints/0/rotation_axis = 3
-settings/0/joints/0/radius = 0.15
-settings/0/joints/0/stiffness = 1.0
-settings/0/joints/0/drag = 0.4
-settings/0/joints/0/gravity = 0.0
-settings/0/joints/0/gravity_direction = Vector3(0, -1, 0)
-settings/0/joints/1/rotation_axis = 3
-settings/0/joints/1/radius = 0.1
-settings/0/joints/1/stiffness = 1.0
-settings/0/joints/1/drag = 0.4
-settings/0/joints/1/gravity = 0.0
-settings/0/joints/1/gravity_direction = Vector3(0, -1, 0)
-settings/0/joints/2/rotation_axis = 3
-settings/0/joints/2/radius = 0.07
-settings/0/joints/2/stiffness = 1.0
-settings/0/joints/2/drag = 0.4
-settings/0/joints/2/gravity = 0.0
-settings/0/joints/2/gravity_direction = Vector3(0, -1, 0)
-settings/0/joints/3/rotation_axis = 3
-settings/0/joints/3/radius = 0.06
-settings/0/joints/3/stiffness = 1.0
-settings/0/joints/3/drag = 0.4
-settings/0/joints/3/gravity = 0.0
-settings/0/joints/3/gravity_direction = Vector3(0, -1, 0)
-settings/0/joints/4/rotation_axis = 3
-settings/0/joints/4/radius = 0.05
-settings/0/joints/4/stiffness = 1.0
-settings/0/joints/4/drag = 0.4
-settings/0/joints/4/gravity = 0.0
-settings/0/joints/4/gravity_direction = Vector3(0, -1, 0)
-settings/0/joints/5/rotation_axis = 3
-settings/0/joints/5/radius = 0.1
-settings/0/joints/5/stiffness = 1.0
-settings/0/joints/5/drag = 0.4
-settings/0/joints/5/gravity = 0.0
-settings/0/joints/5/gravity_direction = Vector3(0, -1, 0)
+settings/0/individual_config = false
+settings/0/rotation_axis = 3
+settings/0/radius/value = 0.02
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 1.0
+settings/0/stiffness/damping_curve = null
+settings/0/drag/value = 0.4
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.0
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/joints/0/bone_name = "Bone"
+settings/0/joints/0/bone = 0
+settings/0/joints/1/bone_name = "Bone.002"
+settings/0/joints/1/bone = 1
+settings/0/joints/2/bone_name = "Bone.003"
+settings/0/joints/2/bone = 2
+settings/0/joints/3/bone_name = "Bone.004"
+settings/0/joints/3/bone = 3
+settings/0/joints/4/bone_name = "Bone.005"
+settings/0/joints/4/bone = 4
+settings/0/joints/5/bone_name = "Bone.006"
+settings/0/joints/5/bone = 5
 settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
 
 [node name="SpringBoneCollisionSphere3D" type="SpringBoneCollisionSphere3D" parent="tentacle/Armature/Skeleton3D/SpringBoneSimulator3D" unique_id=1051691469]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.381007, -0.07171589, 0.0058484077)
+transform = Transform3D(-2.0572429e-07, 1, -4.0745363e-10, -0.9999999, -2.339134e-07, 8.195639e-08, 8.195639e-08, 9.749783e-10, 0.99999994, 4.1643944, 0.0029879138, -2.3841858e-07)
+collide_mode = 2
+
+[node name="SpringBoneCollisionSphere3D_Inside" type="SpringBoneCollisionSphere3D" parent="tentacle/Armature/Skeleton3D/SpringBoneSimulator3D" unique_id=1297968093]
+transform = Transform3D(-2.0572429e-07, 1, -4.0745363e-10, -0.9999999, -2.339134e-07, 8.195639e-08, 8.195639e-08, 9.749783e-10, 0.99999994, 1.7231694, 0.2644158, 1.060643)
+visible = false
+radius = 5.0
+collide_mode = 1
+
+[node name="SpringBoneCollisionCapsule3D" type="SpringBoneCollisionCapsule3D" parent="tentacle/Armature/Skeleton3D/SpringBoneSimulator3D" unique_id=510344921]
+transform = Transform3D(0.5948395, -0.5387343, 0.5965995, 0.79760814, 0.30329847, -0.52137434, 0.09993495, 0.78598696, 0.61011297, 2.9257233, -0.59270966, -0.071885586)
+height = 2.0
+collide_mode = 2
+
+[node name="SpringBoneCollisionCapsule3D_Inside" type="SpringBoneCollisionCapsule3D" parent="tentacle/Armature/Skeleton3D/SpringBoneSimulator3D" unique_id=638621619]
+transform = Transform3D(0.60345775, 0.6063904, 0.5178123, -0.7973949, 0.45890778, 0.39187348, 1.9591813e-07, -0.6493801, 0.76046413, 0.6683612, 2.5177011, -0.071885586)
+visible = false
+radius = 7.0
+height = 20.0
+collide_mode = 1
+
+[node name="SpringBoneCollisionPlane3D" type="SpringBoneCollisionPlane3D" parent="tentacle/Armature/Skeleton3D/SpringBoneSimulator3D" unique_id=1497127971]
+transform = Transform3D(-0.4624053, -0.8866687, 0, 0.8866687, -0.4624053, 0, 0, 0, 1, 4.6508675, -0.16172945, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="tentacle" unique_id=908922729]
+libraries/ = SubResource("AnimationLibrary_7mycd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1099107034]
 transform = Transform3D(0.8599592, 0, -0.5103628, 0.121150285, 0.9714167, 0.20413773, 0.49577495, -0.23738071, 0.8353787, 0, 1.5953059, 0)
 
+[node name="tentacle_stretch" parent="." unique_id=774168293 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.5260725, -0.007657528, 0.0020713806)
+
+[node name="Light" parent="tentacle_stretch" index="0" unique_id=1915683741]
+visible = false
+
+[node name="Camera" parent="tentacle_stretch" index="1" unique_id=1448629317]
+visible = false
+
+[node name="Skeleton3D" parent="tentacle_stretch/Armature" parent_id_path=PackedInt32Array(774168293, 1838353586) index="0" unique_id=1641236225]
+bones/2/scale = Vector3(1, 2, 1)
+bones/3/rotation = Quaternion(0.382682, 0.001002, -0.002419, 0.923876)
+
+[node name="tentacle_position" parent="." unique_id=1915633023 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="Skeleton3D" parent="tentacle_position/Armature" parent_id_path=PackedInt32Array(1915633023, 1838353586) index="0" unique_id=1641236225]
+bones/2/position = Vector3(0, 0.957, 0)
+bones/3/rotation = Quaternion(0.382682, 0.001002, -0.002419, 0.923876)
+
 [editable path="tentacle"]
+[editable path="tentacle_stretch"]
+[editable path="tentacle_position"]

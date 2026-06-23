@@ -11,6 +11,7 @@ extends Camera3D
 @onready var _velocity = default_velocity
 
 func _input(event):
+	return
 	if not current:
 		return
 		
@@ -30,6 +31,7 @@ func _input(event):
 				_velocity = clamp(_velocity / speed_scale, min_speed, max_speed)
 
 func _process(delta):
+	return
 	if not current:
 		return
 		
